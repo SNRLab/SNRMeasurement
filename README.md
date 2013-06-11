@@ -3,6 +3,8 @@ SNRMeasurement
 
 3D Slicer CLI to calculate signal-to-nose ratio of MR images using "difference image" method.
 
+* Contributors: Babak Matinfar <babak@bwh.harvard.edu> and Junichi Tokuda <tokuda@bwh.harvard.edu>
+
 
 Introduction to SNR measurement
 -------------------------------
