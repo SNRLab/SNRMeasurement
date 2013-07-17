@@ -32,6 +32,13 @@
       <index>2</index>
       <description><![CDATA[SNR ROI]]></description>
     </image>
+    <string>
+      <name>SNR</name>
+      <label>Measured SNR:</label>
+      <channel>output</channel>
+      <description>Measuered SNR</description>
+      <default>na</default>
+    </string>
   </parameters>
 </executable>
 
