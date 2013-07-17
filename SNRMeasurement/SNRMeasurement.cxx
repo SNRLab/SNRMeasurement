@@ -117,8 +117,6 @@ int main( int argc, char * argv[] )
 	    {
 	      LabelPixelType labelValue = *vIt;
 	      lAddMean.push_back(labelStat0->GetMean(labelValue));
-	      lAddStdv.push_back(labelStat0->GetSigma(labelValue));
-	      std::cout<<labelStat0->GetMean(labelValue)<<"--- Add ---"<<labelStat0->GetSigma(labelValue)<<std::endl;
 	    }
 	}
 
@@ -130,19 +128,26 @@ int main( int argc, char * argv[] )
 	  if(labelStat1->HasLabel(*vIt))
 	    {
 	      LabelPixelType labelValue = *vIt;
-	      lSubMean.push_back(labelStat1->GetMean(labelValue));
 	      lSubStdv.push_back(labelStat1->GetSigma(labelValue));  
-	      std::cout<<labelStat1->GetMean(labelValue)<<"--- sub ---"<<labelStat1->GetSigma(labelValue)<<std::endl;
 	    }
 	}
 
       double sumMean = std::accumulate(lAddMean.begin()+1, lAddMean.end(),0);
       double subStdv = std::accumulate(lSubStdv.begin()+1, lSubStdv.end(),0);
 
-      std::cout<<sumMean<<"-----"<<subStdv<<std::endl;
       float snr = 10*log10((1.0/sqrt(2.0))*sumMean/subStdv);
 
-      std::cout<< "SNR is :"<<snr<<std::endl;
+      std::ofstream rts;
+      rts.open(returnParameterFile.c_str());
+      if(snr != snr)
+	{
+	  rts << "SNR = ERROR "<<std::endl;
+	}
+      else
+	{
+	  rts << "SNR = "<<snr<<std::endl;
+	}
+      rts.close();
     }
 
   catch( itk::ExceptionObject & excep )
