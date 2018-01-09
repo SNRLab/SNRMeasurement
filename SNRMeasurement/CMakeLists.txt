@@ -2,6 +2,23 @@
 #-----------------------------------------------------------------------------
 set(MODULE_NAME SNRMeasurement)
 
+#
+# SlicerExecutionModel
+#
+find_package(SlicerExecutionModel REQUIRED)
+include(${SlicerExecutionModel_USE_FILE})
+
+#
+# ITK
+#
+set(${PROJECT_NAME}_ITK_COMPONENTS
+  ITKIOImageBase
+  ITKSmoothing
+  )
+find_package(ITK 4.6 COMPONENTS ${${PROJECT_NAME}_ITK_COMPONENTS} REQUIRED)
+set(ITK_NO_IO_FACTORY_REGISTER_MANAGER 1) # See Libs/ITKFactoryRegistration/CMakeLists.txt
+include(${ITK_USE_FILE})
+
 #-----------------------------------------------------------------------------
 set(MODULE_INCLUDE_DIRECTORIES
   )
